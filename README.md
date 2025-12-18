@@ -2,7 +2,7 @@
 
 An Interactive Systems Design and Technology (ISDT) VR project built with Unity, featuring spatial computing, hand tracking, and mixed reality experiences on Meta Quest devices.
 
-## 📋 Project Overview
+## Project Overview
 
 This repository contains lab exercises and projects exploring various VR/AR technologies:
 
@@ -12,15 +12,15 @@ This repository contains lab exercises and projects exploring various VR/AR tech
 - **Lab 5**: LLM Integration - AI-powered puzzle solving and visual understanding
 - **VirtualHome**: Room-scale VR environment with furniture and spatial anchors
 
-## 🚀 Features
+## Features
 
-- 🎮 **VR Interaction** - Full hand tracking and controller support
-- 🏠 **Virtual Home** - Customizable room environments with Meta Scene API
-- 🤖 **Avatar System** - Full-body IK with MediaPipe integration
-- 🎯 **Spatial Anchors** - Persistent object placement in physical space
-- 🐍 **Python Integration** - Socket-based communication for AI/CV processing
+- **VR Interaction** - Full hand tracking and controller support
+- **Virtual Home** - Customizable room environments with Meta Scene API
+- **Avatar System** - Full-body IK with MediaPipe integration
+- **Spatial Anchors** - Persistent object placement in physical space
+- **Python Integration** - Socket-based communication for AI/CV processing
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Unity** (2022.3 or later)
 - **Meta XR SDK** - Quest VR development
@@ -30,7 +30,7 @@ This repository contains lab exercises and projects exploring various VR/AR tech
 - **Intel RealSense SDK** - Depth sensing
 - **Socket.IO** - Unity-Python communication
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 Assets/
@@ -45,7 +45,7 @@ Assets/
 └── Server.cs         # Socket server for Python communication
 ```
 
-## 🎯 Requirements
+## Requirements
 
 ### Hardware
 - Meta Quest 2/3/Pro
@@ -63,7 +63,7 @@ Assets/
 pip install opencv-python mediapipe numpy
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Clone the repository**
    ```bash
@@ -94,7 +94,7 @@ pip install opencv-python mediapipe numpy
 3. Select your Quest device
 4. Build and Run
 
-## 🎓 Lab Descriptions
+## Lab Descriptions
 
 ### Lab 2: Spatial Anchors
 Demonstrates persistent spatial anchors using RealSense depth camera for 3D reconstruction and object placement.
@@ -107,25 +107,5 @@ Interactive VR game featuring object spawning, physics-based interactions, and s
 
 ### Lab 5: LLM Integration
 AI-powered puzzle solving using computer vision and large language models for scene understanding.
-
-## 🤝 Contributing
-
-This is a course project repository. For questions or suggestions, please open an issue.
-
-## 📄 License
-
-This project is for educational purposes.
-
-## 👤 Author
-
-Allen - ISDT 2025 Course Project
-
-## 🔗 Links
-
-- [Unity Documentation](https://docs.unity3d.com/)
-- [Meta Quest Developer](https://developer.oculus.com/)
-- [MediaPipe](https://google.github.io/mediapipe/)
-
----
 
 **Note**: Some assets (Avatar samples, large media files) are excluded from the repository. Download separately if needed.
