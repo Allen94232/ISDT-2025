@@ -87,7 +87,7 @@ pip install opencv-python mediapipe numpy
    python MediaPipe.py
    ```
 
-## 📱 Building for Quest
+## Building for Quest
 
 1. File → Build Settings
 2. Switch platform to Android
