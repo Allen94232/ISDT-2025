@@ -1,0 +1,319 @@
+[
+  {
+    "goal": "make the plant grow",
+    "objects": [
+      "bucket",
+      "hammer",
+      "coffee cup",
+      "alcohol spray",
+      "umbrella"
+    ],
+    "edges": [
+      {
+        "source": "bucket",
+        "relation": "FILL WITH",
+        "target": "water"
+      },
+      {
+        "source": "bucket",
+        "relation": "POUR ON",
+        "target": "plant"
+      },
+      {
+        "source": "hammer",
+        "relation": "BREAK",
+        "target": "coffee cup"
+      },
+      {
+        "source": "coffee cup",
+        "relation": "SHARD",
+        "target": "soil"
+      },
+      {
+        "source": "alcohol spray",
+        "relation": "SPRAY ON",
+        "target": "plant"
+      },
+      {
+        "source": "umbrella",
+        "relation": "COVER",
+        "target": "plant"
+      }
+    ]
+  },
+  {
+    "goal": "clean the dirty surface",
+    "objects": [
+      "bucket",
+      "hammer",
+      "coffee cup",
+      "alcohol spray",
+      "umbrella"
+    ],
+    "edges": [
+      {
+        "source": "bucket",
+        "relation": "FILL WITH",
+        "target": "water"
+      },
+      {
+        "source": "coffee cup",
+        "relation": "SCOOP",
+        "target": "water from bucket"
+      },
+      {
+        "source": "coffee cup",
+        "relation": "POUR ON",
+        "target": "dirty surface"
+      },
+      {
+        "source": "alcohol spray",
+        "relation": "SPRAY ON",
+        "target": "wet dirty surface"
+      },
+      {
+        "source": "hammer",
+        "relation": "USE TO SCRUB",
+        "target": "surface with alcohol"
+      },
+      {
+        "source": "umbrella",
+        "relation": "PROTECT FROM",
+        "target": "falling debris while cleaning"
+      }
+    ]
+  },
+  {
+    "goal": "keep yourself dry in the rain",
+    "objects": [
+      "bucket",
+      "hammer",
+      "coffee cup",
+      "alcohol spray",
+      "umbrella"
+    ],
+    "edges": [
+      {
+        "source": "rain",
+        "relation": "falls on",
+        "target": "umbrella"
+      },
+      {
+        "source": "umbrella",
+        "relation": "covers",
+        "target": "you"
+      },
+      {
+        "source": "bucket",
+        "relation": "empty",
+        "target": "rainwater"
+      },
+      {
+        "source": "rainwater",
+        "relation": "collected in",
+        "target": "bucket"
+      },
+      {
+        "source": "coffee cup",
+        "relation": "holds",
+        "target": "alcohol spray"
+      },
+      {
+        "source": "alcohol spray",
+        "relation": "used to",
+        "target": "clean umbrella"
+      },
+      {
+        "source": "umbrella",
+        "relation": "maintained with",
+        "target": "alcohol spray"
+      },
+      {
+        "source": "hammer",
+        "relation": "used to",
+        "target": "fix umbrella"
+      },
+      {
+        "source": "umbrella",
+        "relation": "repaired with",
+        "target": "hammer"
+      }
+    ]
+  },
+  {
+    "goal": "make the plant grow",
+    "objects": [
+      "Fan",
+      "Flashlight",
+      "Notebook",
+      "Towel",
+      "Bottle"
+    ],
+    "edges": [
+      {
+        "source": "Bottle",
+        "relation": "POUR ON",
+        "target": "plant"
+      },
+      {
+        "source": "plant",
+        "relation": "state change",
+        "target": "plant  moist"
+      },
+      {
+        "source": "Fan",
+        "relation": "BLOW ON",
+        "target": "plant  moist"
+      },
+      {
+        "source": "plant  moist",
+        "relation": "state change",
+        "target": "plant  dry"
+      },
+      {
+        "source": "Flashlight",
+        "relation": "SHINE ON",
+        "target": "plant  dry"
+      },
+      {
+        "source": "plant  dry",
+        "relation": "state change",
+        "target": "plant  photosynthesis"
+      },
+      {
+        "source": "Notebook",
+        "relation": "RECORD",
+        "target": "growth observations"
+      },
+      {
+        "source": "growth observations",
+        "relation": "state change",
+        "target": "plant  knowledge increased"
+      },
+      {
+        "source": "Towel",
+        "relation": "WIPE",
+        "target": "excess water"
+      }
+    ]
+  },
+  {
+    "goal": "clean the dirty surface",
+    "objects": [
+      "Fan",
+      "Flashlight",
+      "Notebook",
+      "Towel",
+      "Bottle"
+    ],
+    "edges": [
+      {
+        "source": "Bottle",
+        "relation": "FILLED WITH",
+        "target": "water"
+      },
+      {
+        "source": "Bottle",
+        "relation": "POUR ON",
+        "target": "Towel"
+      },
+      {
+        "source": "Towel",
+        "relation": "state  dry → wet",
+        "target": "Towel"
+      },
+      {
+        "source": "Towel",
+        "relation": "WIPE",
+        "target": "dirty surface"
+      },
+      {
+        "source": "dirty surface",
+        "relation": "state  dirty → clean",
+        "target": "dirty surface"
+      },
+      {
+        "source": "Fan",
+        "relation": "TURN ON TO",
+        "target": "dry the surface"
+      },
+      {
+        "source": "Flashlight",
+        "relation": "SHINE ON",
+        "target": "surface to inspect cleanliness"
+      },
+      {
+        "source": "Notebook",
+        "relation": "NOTE",
+        "target": "cleaning progress"
+      }
+    ]
+  },
+  {
+    "goal": "Keep yourself dry in the rain",
+    "objects": [
+      "Fan",
+      "Flashlight",
+      "Notebook",
+      "Towel",
+      "Bottle"
+    ],
+    "edges": [
+      {
+        "source": "Fan",
+        "relation": "direct air towards",
+        "target": "Towel"
+      },
+      {
+        "source": "Towel",
+        "relation": "dry → damp",
+        "target": "Towel"
+      },
+      {
+        "source": "Fan",
+        "relation": "dry → dry",
+        "target": "Towel"
+      },
+      {
+        "source": "Flashlight",
+        "relation": "illuminates",
+        "target": "Notebook"
+      },
+      {
+        "source": "Notebook",
+        "relation": "write plan in",
+        "target": "Notebook"
+      },
+      {
+        "source": "Notebook",
+        "relation": "plan  use towel as cover",
+        "target": "Towel"
+      },
+      {
+        "source": "Bottle",
+        "relation": "fill with water",
+        "target": "Bottle"
+      },
+      {
+        "source": "Bottle",
+        "relation": "pour on",
+        "target": "Fan"
+      },
+      {
+        "source": "Fan",
+        "relation": "cooling effect",
+        "target": "Towel"
+      },
+      {
+        "source": "Towel",
+        "relation": "cover head",
+        "target": "You"
+      },
+      {
+        "source": "Towel",
+        "relation": "You stay dry",
+        "target": "You"
+      }
+    ]
+  }
+]
