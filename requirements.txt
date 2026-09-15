@@ -1,0 +1,11 @@
+# Core camera and numerical dependencies used by Labs 1-4
+numpy>=1.26,<3
+opencv-python>=4.8,<5
+pyrealsense2>=2.54
+mediapipe>=0.10,<1
+scipy>=1.11,<2
+
+# Lab 5 generative-AI and graph helpers
+openai>=1,<3
+pydantic>=2,<3
+graphviz>=0.20,<1

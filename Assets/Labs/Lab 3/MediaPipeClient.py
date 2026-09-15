@@ -1,3 +1,4 @@
+import os
 import socket
 import json
 import cv2
@@ -5,10 +6,10 @@ import numpy as np
 import pyrealsense2 as rs
 from MediaPipe import MediaPipe
 
-'''The server's hostname or IP address'''
-HOST = "10.47.101.179" 
+'''The server\'s hostname or IP address'''
+HOST = os.getenv("UNITY_HOST", "127.0.0.1")
 '''The port used by the server'''
-PORT = 143
+PORT = int(os.getenv("UNITY_PORT", "50555"))
 
 # Global variables for calibration
 is_calibrated = False

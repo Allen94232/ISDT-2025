@@ -1,11 +1,12 @@
+import os
 import pyrealsense2 as rs
 import numpy as np
 import cv2
 import socket, json, time, threading
 
 # ------------ network config ------------
-HOST = "192.168.50.22"   # Quest's Wi-Fi IP
-PORT = 50555             # Same port as Unity server
+HOST = os.getenv("UNITY_HOST", "127.0.0.1")
+PORT = int(os.getenv("UNITY_PORT", "50555"))
 # ----------------------------------------
 
 def send(sock, msg):

@@ -8,8 +8,9 @@ using UnityEngine;
 
 public class TCP_Lab2 : MonoBehaviour
 {
-    const string hostIP = "10.47.101.196"; // Select your IP
-    const int port = 143; // Select your port
+    [Header("Network Settings")]
+    [SerializeField] private string hostIP = "0.0.0.0";
+    [SerializeField] private int port = 50555;
     TcpListener server = null;
     TcpClient client = null;
     NetworkStream stream = null;
@@ -28,7 +29,7 @@ public class TCP_Lab2 : MonoBehaviour
     private static object Lock = new object();
     private List<Message> MessageQue = new List<Message>();
 
-    // §ï¦¨ Dictionary Àx¦s ID ¹ïÀ³ªº¦ì¸m
+    // æ”¹æˆ Dictionary å„²å­˜ ID å°æ‡‰çš„ä½ç½®
     private Dictionary<int, Vector3> transformedPositions = new Dictionary<int, Vector3>();
 
     private void Start()
@@ -39,14 +40,14 @@ public class TCP_Lab2 : MonoBehaviour
 
     private void Update()
     {
-        // ³B²z¦¬¨ìªº°T®§
+        // è™•ç†æ”¶åˆ°çš„è¨Šæ¯
         lock (Lock)
         {
             foreach (Message msg in MessageQue)
             {
                 Debug.Log($"Received: ID={msg.id}, Pos={msg.ArUcoCornerPos?.Length}, Rot={msg.rotation}, Transformed Pos={msg.transformed_position}");
 
-                // §ó·s¸Ó ID ªº transformed_position
+                // æ›´æ–°è©² ID çš„ transformed_position
                 transformedPositions[msg.id] = msg.transformed_position;
             }
             MessageQue.Clear();
@@ -146,7 +147,7 @@ public class TCP_Lab2 : MonoBehaviour
         SendMessageToClient(msg);
     }
 
-    // ¦w¥ş¨ú±o transformed_position
+    // å®‰å…¨å–å¾— transformed_position
     public Vector3 SetTransformedPosition(int id)
     {
         if (transformedPositions.TryGetValue(id, out Vector3 pos))

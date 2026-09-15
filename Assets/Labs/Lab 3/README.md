@@ -28,8 +28,8 @@ python -m pip install mediapipe opencv-python numpy pyrealsense2
 ## Setup
 
 1. Open `Avatar.unity`.
-2. Update the host address in both `Server_Lab3.cs` and `MediaPipeClient.py` for the current machine.
-3. Ensure both sides use the same port; the current source uses `143`.
+2. In Unity, keep the default bind address `0.0.0.0` and port `50555`, or edit the Inspector fields.
+3. Set `UNITY_HOST` for `MediaPipeClient.py` when Unity runs on another machine; `UNITY_PORT` defaults to `50555`.
 4. Start the Unity scene.
 5. Start the client:
 
@@ -48,4 +48,4 @@ python MediaPipeClient.py
 
 ## Network Notes
 
-The committed IP address is environment-specific. Replace it before running, and do not treat port `143` as a required protocol value.
+The Python client defaults to `127.0.0.1:50555` and reads `UNITY_HOST` / `UNITY_PORT`. Do not commit venue-specific network addresses.

@@ -1,3 +1,4 @@
+import os
 import socket
 import json
 import pyrealsense2 as rs
@@ -6,8 +7,8 @@ import cv2
 import time
 import threading
 
-HOST = "10.47.101.196"   # <- 改成你的 Unity Server IP
-PORT = 143
+HOST = os.getenv("UNITY_HOST", "127.0.0.1")
+PORT = int(os.getenv("UNITY_PORT", "50555"))
 
 latest_msg = {}
 id_transformation_matrix = {}   # dict: id -> 4x4 homogeneous matrix H (camera_col -> world_col)

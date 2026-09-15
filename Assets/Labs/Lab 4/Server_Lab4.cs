@@ -15,8 +15,9 @@ using UnityEngine;
 
 public class TCP_Lab4 : MonoBehaviour
 {
-    const string hostIP = "10.47.102.7"; // Select your IP
-    const int port = 143; // Select your port
+    [Header("Network Settings")]
+    [SerializeField] private string hostIP = "0.0.0.0";
+    [SerializeField] private int port = 50555;
     TcpListener server = null;
     TcpClient client = null;
     NetworkStream stream = null;

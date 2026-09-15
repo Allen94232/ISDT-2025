@@ -17,8 +17,9 @@ public class TCPCompleted : MonoBehaviour
 {
     public static TCPCompleted Instance { get; private set; }
 
-    const string hostIP = "0.0.0.0"; // Listen on all interfaces
-    const int port = 50555;          // Port must match Python
+    [Header("Network Settings")]
+    [SerializeField] private string hostIP = "0.0.0.0";
+    [SerializeField] private int port = 50555;
     TcpListener server = null;
     TcpClient client = null;
     NetworkStream stream = null;

@@ -29,8 +29,8 @@ python -m pip install numpy opencv-python mediapipe pyrealsense2 scipy
 ## Setup
 
 1. Open `Lab4.unity`.
-2. Update `Server_Lab4.cs` and `Client_Lab4.py` to the current host IP.
-3. Ensure both use the same TCP port; the committed source uses `143`.
+2. In Unity, keep the default bind address `0.0.0.0` and port `50555`, or edit the Inspector fields.
+3. Set `UNITY_HOST` for `Client_Lab4.py` when Unity runs on another machine; `UNITY_PORT` defaults to `50555`.
 4. Start Unity first.
 5. Run:
 
@@ -59,4 +59,4 @@ Refer to the current console messages in `Client_Lab4.py` for the exact state af
 - Confirm Unity is listening before Python connects.
 - Confirm the camera is not in use by another Lab script.
 - Keep calibration markers and tracked body landmarks visible simultaneously.
-- Check firewall rules and avoid using the committed private IP on another network.
+- Check firewall rules and set `UNITY_HOST` rather than committing a private network address.

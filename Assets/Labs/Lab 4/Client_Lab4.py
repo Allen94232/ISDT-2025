@@ -4,6 +4,7 @@ Fusion of Lab2 (ArUco) and Lab3 (MediaPipe) functionality
 Compatible with Server_Lab4.cs and GameObjectCreater.cs
 """
 
+import os
 import cv2
 import numpy as np
 import socket
@@ -17,8 +18,8 @@ from scipy.spatial.transform import Rotation as R
 class Lab4Client:
     def __init__(self):
         # Network settings
-        self.HOST = '10.47.102.7'
-        self.PORT = 143
+        self.HOST = os.getenv("UNITY_HOST", "127.0.0.1")
+        self.PORT = int(os.getenv("UNITY_PORT", "50555"))
         self.socket = None
         
         # MediaPipe setup

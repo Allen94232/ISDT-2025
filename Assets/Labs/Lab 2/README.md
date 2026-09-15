@@ -16,8 +16,8 @@ The directory contains an exercise version and a completed reference version:
 
 | Path | TCP configuration |
 | --- | --- |
-| `Client.py` + `Server_Lab2.cs` | Host is stored in both files; current port is `143` |
-| `Lab2Completed/ClientCompleted.py` + `Lab2Completed/ServerCompleted.cs` | Client connects to the Quest IP; server listens on `0.0.0.0:50555` |
+| `Client.py` + `Server_Lab2.cs` | Python reads `UNITY_HOST` / `UNITY_PORT`; Unity exposes bind host and port in the Inspector |
+| `Lab2Completed/ClientCompleted.py` + `Lab2Completed/ServerCompleted.cs` | Uses the same configurable setup and newline-delimited JSON framing |
 
 Prefer the completed pair when reproducing the full workflow.
 
@@ -25,8 +25,8 @@ Prefer the completed pair when reproducing the full workflow.
 
 1. Open `Lab2.unity` in Unity.
 2. Confirm the intended server component is present in the scene.
-3. Find the Quest or Unity host's current LAN IP.
-4. Update the Python client's `HOST` value.
+3. In Unity, keep the default bind address `0.0.0.0` and port `50555`, or edit both Inspector fields.
+4. Set `UNITY_HOST` to the Quest or Unity host's current LAN IP; `UNITY_PORT` defaults to `50555`.
 5. Ensure the Python and Unity ports match.
 6. Build and run the Unity scene before starting the Python client.
 7. Start the matching client:
@@ -43,9 +43,9 @@ python Lab2Completed/ClientCompleted.py
 
 ## Network Notes
 
-- Do not assume the IP addresses committed in the scripts are valid on another network.
-- Port `143` may conflict with existing services or firewall policy; choose another matching port if required.
-- The completed server listens on all interfaces, so use it only on a trusted network.
+- Python defaults to `127.0.0.1`; set `UNITY_HOST` when the server runs on another device.
+- Port `50555` is the default; choose another matching port if required by firewall policy.
+- The Unity server listens on all interfaces by default, so use it only on a trusted network.
 - Do not commit personal or venue network addresses when documenting a deployment.
 
 ## Troubleshooting

@@ -105,3 +105,8 @@ Assets/Labs/Lab 5.zip
 # Large Avatar preset files (>100MB)
 Assets/Oculus/Avatar2_SampleAssets/SampleAssets/SampleAssets/PresetAvatars_Quest.zip
 Assets/Oculus/Avatar2_SampleAssets/SampleAssets/SampleAssets/PresetAvatars_Rift.zip
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+*.cache
