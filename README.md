@@ -6,11 +6,11 @@ A Unity and Python workspace for spatial-computing labs involving computer visio
 
 | Module | Focus | Key files |
 | --- | --- | --- |
-| Lab 1 | RealSense capture, point-cloud viewing, ArUco generation, and object detection | [`Assets/Labs/Lab 1`](Assets/Labs/Lab%201) |
-| Lab 2 | Unity–Python communication and spatial-anchor experiments | [`Lab2.unity`](Assets/Labs/Lab%202/Lab2.unity), [`Client.py`](Assets/Labs/Lab%202/Client.py) |
-| Lab 3 | MediaPipe body tracking and Unity avatar/hand-tracking scenes | [`MediaPipe.py`](Assets/Labs/Lab%203/MediaPipe.py), [`Avatar.unity`](Assets/Labs/Lab%203/Avatar.unity) |
-| Lab 4 | Runtime object creation and an interactive minecart scene | [`GameObjectCreator.cs`](Assets/Labs/Lab%204/GameObjectCreator.cs), [`Lab4.unity`](Assets/Labs/Lab%204/Lab4.unity) |
-| Lab 5 | LLM-assisted object selection and puzzle-graph visualization | [`Lab 5.py`](Assets/Labs/Lab%205/Lab%205.py), [`puzzle_graphs.json`](Assets/Labs/Lab%205/puzzle_graphs.json) |
+| Lab 1 | RealSense capture, point-cloud viewing, ArUco generation, and object detection | [Instructions](Assets/Labs/Lab%201/README.md) |
+| Lab 2 | Unity–Python communication and spatial-anchor experiments | [Instructions](Assets/Labs/Lab%202/README.md) |
+| Lab 3 | MediaPipe body tracking and Unity avatar/hand-tracking scenes | [Instructions](Assets/Labs/Lab%203/README.md) |
+| Lab 4 | Runtime object creation and an interactive minecart scene | [Instructions](Assets/Labs/Lab%204/README.md) |
+| Lab 5 | LLM-assisted object selection and puzzle-graph visualization | [Instructions](Assets/Labs/Lab%205/README.md) |
 | Virtual Home | Room layout and scene-anchor-based object placement experiments | [`VirtualHome.unity`](Assets/VirtualHome/VirtualHome.unity) |
 
 ## Technology Stack
