@@ -65,13 +65,14 @@ A Unity and Python workspace for spatial-computing labs involving computer visio
 
 ### Python
 
-Create a virtual environment and install only the packages required by the selected lab. Common dependencies include:
+Create a virtual environment and install the documented Python dependencies:
 
 ```bash
-pip install numpy opencv-python mediapipe pyrealsense2
+python -m venv .venv
+python -m pip install -r requirements.txt
 ```
 
-Lab 5 may additionally require the API client and graph-visualization packages imported by its script.
+Use the activation command for your operating system. RealSense support still requires a compatible Intel RealSense SDK, camera, and platform.
 
 ## Hardware Notes
 

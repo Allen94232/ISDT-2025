@@ -34,7 +34,7 @@ public class TCP_Lab2 : MonoBehaviour
 
     private void Start()
     {
-        thread = new Thread(new ThreadStart(SetupServer));
+        thread = new Thread(SetupServer) { IsBackground = true };
         thread.Start();
     }
 
@@ -63,7 +63,6 @@ public class TCP_Lab2 : MonoBehaviour
             server.Start();
 
             byte[] buffer = new byte[1024];
-            string data = null;
 
             while (true)
             {
@@ -71,17 +70,35 @@ public class TCP_Lab2 : MonoBehaviour
                 client = server.AcceptTcpClient();
                 Debug.Log("Connected!");
 
-                data = null;
                 stream = client.GetStream();
+                string receiveBuffer = "";
 
-                int i;
-                while ((i = stream.Read(buffer, 0, buffer.Length)) != 0)
+                int bytesRead;
+                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                 {
-                    data = Encoding.UTF8.GetString(buffer, 0, i);
-                    Message message = Decode(data);
-                    lock (Lock)
+                    receiveBuffer += Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    int newlineIndex;
+                    while ((newlineIndex = receiveBuffer.IndexOf('\n')) >= 0)
                     {
-                        MessageQue.Add(message);
+                        string line = receiveBuffer.Substring(0, newlineIndex).Trim();
+                        receiveBuffer = receiveBuffer.Substring(newlineIndex + 1);
+                        if (line.Length == 0)
+                        {
+                            continue;
+                        }
+
+                        try
+                        {
+                            Message message = Decode(line);
+                            lock (Lock)
+                            {
+                                MessageQue.Add(message);
+                            }
+                        }
+                        catch (Exception decodeError)
+                        {
+                            Debug.LogWarning("Invalid JSON message: " + decodeError.Message);
+                        }
                     }
                 }
                 client.Close();
@@ -93,7 +110,7 @@ public class TCP_Lab2 : MonoBehaviour
         }
         finally
         {
-            server.Stop();
+            server?.Stop();
         }
     }
 
@@ -102,19 +119,28 @@ public class TCP_Lab2 : MonoBehaviour
         stream?.Close();
         client?.Close();
         server?.Stop();
-        thread?.Abort();
+        if (thread != null && thread.IsAlive)
+        {
+            thread.Join(500);
+        }
     }
 
     public void SendMessageToClient(Message message)
     {
-        byte[] msg = Encoding.UTF8.GetBytes(Encode(message));
+        if (stream == null || !stream.CanWrite)
+        {
+            Debug.LogWarning("TCP client is not connected.");
+            return;
+        }
+
+        byte[] msg = Encoding.UTF8.GetBytes(Encode(message) + "\n");
         stream.Write(msg, 0, msg.Length);
         Debug.Log("Sent: " + message);
     }
 
     public string Encode(Message message)
     {
-        return JsonUtility.ToJson(message, true);
+        return JsonUtility.ToJson(message);
     }
 
     public Message Decode(string json_string)

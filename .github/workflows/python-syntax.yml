@@ -1,0 +1,27 @@
+name: Python syntax
+
+on:
+  push:
+    paths:
+      - "Assets/Labs/**/*.py"
+      - "requirements.txt"
+      - ".github/workflows/python-syntax.yml"
+  pull_request:
+    paths:
+      - "Assets/Labs/**/*.py"
+      - "requirements.txt"
+      - ".github/workflows/python-syntax.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile lab scripts
+        run: python -m compileall -q "Assets/Labs"

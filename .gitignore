@@ -110,3 +110,7 @@ Assets/Oculus/Avatar2_SampleAssets/SampleAssets/SampleAssets/PresetAvatars_Rift.
 __pycache__/
 *.py[cod]
 *.cache
+
+# Unity Version Control workspace metadata
+.plastic/
+ignore.conf

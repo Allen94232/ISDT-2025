@@ -18,38 +18,40 @@ aruco_size = 0.16  # ArUco 真實邊長 (公尺)，請改成你實際值
 # 存放最近一幀每個 marker 的 4 個角點 (camera coords, shape (4,3))
 detected_marker_corners = {}  # id -> np.array(4,3)
 
-# 接收 thread
+# Receive newline-delimited JSON without relying on TCP packet boundaries.
 def receive_loop(sock):
     global latest_msg, anchor_created
+    buffer = b""
     while True:
         try:
-            data = sock.recv(4096)
-            if not data:
+            chunk = sock.recv(4096)
+            if not chunk:
                 print("Socket closed by server")
                 break
-            # 假設每次 recv 就是一個完整的 JSON（簡化處理）
-            text = data.decode("utf-8")
-            try:
-                msg = json.loads(text)
-            except Exception as e:
-                print("JSON decode error:", e, "raw:", text)
-                continue
-            latest_msg = msg
-            anchor_created = True
-            print("📩 Received:", msg)
-        except Exception as e:
-            # 不要終止 thread，稍等再繼續
-            # print("receive_loop error:", e)
-            time.sleep(0.01)
-            continue
+            buffer += chunk
+            while b"\n" in buffer:
+                line, buffer = buffer.split(b"\n", 1)
+                if not line.strip():
+                    continue
+                try:
+                    msg = json.loads(line.decode("utf-8"))
+                except (UnicodeDecodeError, json.JSONDecodeError) as error:
+                    print("JSON decode error:", error)
+                    continue
+                latest_msg = msg
+                anchor_created = True
+                print("Received:", msg)
+        except OSError as error:
+            print("Receive error:", error)
+            break
 
 def send(sock, msg):
     try:
-        data = json.dumps(msg)
+        data = json.dumps(msg, separators=(",", ":")) + "\n"
         sock.sendall(data.encode("utf-8"))
-        print("📤 Sent:", msg)
-    except Exception as e:
-        print("Send error:", e)
+        print("Sent:", msg)
+    except OSError as error:
+        print("Send error:", error)
 
 # 構造 4x4 齊次矩陣 H，從 lstsq 得到的 M (4x3)：滿足 row-vector: P_cam_row @ M = P_world_row
 # 我們轉成 column-vector convention: H @ P_cam_col = P_world_col

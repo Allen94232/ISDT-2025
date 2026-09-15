@@ -1,4 +1,0 @@
-repository "ISDT/ISDT@1375859422424@cloud"
-  path "/"
-    br "/main"
-    co "/main"

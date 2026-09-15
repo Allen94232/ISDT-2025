@@ -16,7 +16,7 @@ The directory contains an exercise version and a completed reference version:
 
 | Path | TCP configuration |
 | --- | --- |
-| `Client.py` + `Server_Lab2.cs` | Python reads `UNITY_HOST` / `UNITY_PORT`; Unity exposes bind host and port in the Inspector |
+| `Client.py` + `Server_Lab2.cs` | Configurable host/port with newline-delimited JSON framing on both directions |
 | `Lab2Completed/ClientCompleted.py` + `Lab2Completed/ServerCompleted.cs` | Uses the same configurable setup and newline-delimited JSON framing |
 
 Prefer the completed pair when reproducing the full workflow.
@@ -52,5 +52,6 @@ python Lab2Completed/ClientCompleted.py
 
 - Start Unity before Python so the TCP listener is available.
 - Confirm the server log reports the expected bind address and port.
+- Keep one compact JSON object per line; both implementations use newline-delimited JSON so messages may span or share TCP packets safely.
 - Test PC-to-Quest connectivity on the same Wi-Fi network.
 - Verify the ArUco dictionary and marker IDs match the physical markers.
