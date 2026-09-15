@@ -1,111 +1,81 @@
-# ISDT-2025
+# Interactive Systems Design and Technology — 2025
 
-An Interactive Systems Design and Technology (ISDT) VR project built with Unity, featuring spatial computing, hand tracking, and mixed reality experiences on Meta Quest devices.
+A Unity and Python workspace for spatial-computing labs involving computer vision, Meta Quest interaction, body tracking, object generation, and LLM-assisted puzzle experiments.
 
-## Project Overview
+## Lab Overview
 
-This repository contains lab exercises and projects exploring various VR/AR technologies:
+| Module | Focus | Key files |
+| --- | --- | --- |
+| Lab 1 | RealSense capture, point-cloud viewing, ArUco generation, and object detection | [`Assets/Labs/Lab 1`](Assets/Labs/Lab%201) |
+| Lab 2 | Unity–Python communication and spatial-anchor experiments | [`Lab2.unity`](Assets/Labs/Lab%202/Lab2.unity), [`Client.py`](Assets/Labs/Lab%202/Client.py) |
+| Lab 3 | MediaPipe body tracking and Unity avatar/hand-tracking scenes | [`MediaPipe.py`](Assets/Labs/Lab%203/MediaPipe.py), [`Avatar.unity`](Assets/Labs/Lab%203/Avatar.unity) |
+| Lab 4 | Runtime object creation and an interactive minecart scene | [`GameObjectCreator.cs`](Assets/Labs/Lab%204/GameObjectCreator.cs), [`Lab4.unity`](Assets/Labs/Lab%204/Lab4.unity) |
+| Lab 5 | LLM-assisted object selection and puzzle-graph visualization | [`Lab 5.py`](Assets/Labs/Lab%205/Lab%205.py), [`puzzle_graphs.json`](Assets/Labs/Lab%205/puzzle_graphs.json) |
+| Virtual Home | Room layout and scene-anchor-based object placement experiments | [`VirtualHome.unity`](Assets/VirtualHome/VirtualHome.unity) |
 
-- **Lab 2**: Spatial Anchors - RealSense depth camera integration and spatial mapping
-- **Lab 3**: Body Tracking - Avatar animation with MediaPipe and hand tracking
-- **Lab 4**: Game Design - Interactive VR game with object spawning and physics
-- **Lab 5**: LLM Integration - AI-powered puzzle solving and visual understanding
-- **VirtualHome**: Room-scale VR environment with furniture and spatial anchors
+## Technology Stack
 
-## Features
+- Unity `6000.2.2f1`
+- Meta XR SDK `78.0.0`
+- Meta Avatars SDK `40.0.1`
+- OpenXR `1.15.1`
+- Universal Render Pipeline `17.2.0`
+- Unity Sentis / AI Inference `2.2.2`
+- Python, OpenCV, MediaPipe, Intel RealSense, and Graphviz-based visualization
 
-- **VR Interaction** - Full hand tracking and controller support
-- **Virtual Home** - Customizable room environments with Meta Scene API
-- **Avatar System** - Full-body IK with MediaPipe integration
-- **Spatial Anchors** - Persistent object placement in physical space
-- **Python Integration** - Socket-based communication for AI/CV processing
+## Repository Structure
 
-## Technologies Used
-
-- **Unity** (2022.3 or later)
-- **Meta XR SDK** - Quest VR development
-- **Universal Render Pipeline (URP)**
-- **Python** - For computer vision and AI integration
-- **MediaPipe** - Body and hand tracking
-- **Intel RealSense SDK** - Depth sensing
-- **Socket.IO** - Unity-Python communication
-
-## Project Structure
-
-```
-Assets/
-├── Labs/              # Lab exercises
-│   ├── Lab 2/        # Spatial Anchors
-│   ├── Lab 3/        # Body Tracking
-│   ├── Lab 4/        # Game Design
-│   └── Lab 5/        # LLM Integration
-├── VirtualHome/      # Virtual environment assets
-├── Oculus/           # Meta XR integration
-├── Scenes/           # Unity scenes
-└── Server.cs         # Socket server for Python communication
+```text
+.
+├── Assets/
+│   ├── Labs/
+│   │   ├── Lab 1/        # RealSense and computer-vision exercises
+│   │   ├── Lab 2/        # Spatial anchors and Unity–Python communication
+│   │   ├── Lab 3/        # Body and hand tracking
+│   │   ├── Lab 4/        # Interactive object-generation scene
+│   │   └── Lab 5/        # LLM puzzle experiments
+│   ├── VirtualHome/      # Virtual room and placement scripts
+│   ├── Oculus/           # Meta XR assets
+│   └── RealSenseSDK2.0/  # Intel RealSense Unity integration
+├── Packages/
+└── ProjectSettings/
 ```
 
-## Requirements
+## Selected Components
 
-### Hardware
-- Meta Quest 2/3/Pro
-- PC with VR-capable GPU (for development)
-- Intel RealSense camera (for Lab 2)
-
-### Software
-- Unity 2022.3 or later
-- Python 3.8+
-- Meta Quest Developer Hub
-- Visual Studio or VS Code
-
-### Python Dependencies
-```bash
-pip install opencv-python mediapipe numpy
-```
+| File | Role |
+| --- | --- |
+| [`object_detection.py`](Assets/Labs/Lab%201/object_detection.py) | Computer-vision object detection |
+| [`SpatialAnchors.cs`](Assets/Labs/Lab%202/SpatialAnchors.cs) | Spatial-anchor exercise logic |
+| [`Server_Lab3.cs`](Assets/Labs/Lab%203/Server_Lab3.cs) | Receives tracking data in Unity |
+| [`MediaPipeClient.py`](Assets/Labs/Lab%203/MediaPipeClient.py) | Sends MediaPipe tracking data |
+| [`Client_Lab4.py`](Assets/Labs/Lab%204/Client_Lab4.py) | Python client for the Lab 4 scene |
+| [`Lab4_GameManager.cs`](Assets/Labs/Lab%204/Lab4_GameManager.cs) | Controls Lab 4 interaction flow |
+| [`BiggestAnchorPrefabSpawner.cs`](Assets/VirtualHome/scripts/BiggestAnchorPrefabSpawner.cs) | Places content using scene-anchor information |
 
 ## Getting Started
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Allen94232/ISDT-2025.git
-   cd ISDT-2025
-   ```
+### Unity
 
-2. **Open in Unity**
-   - Open Unity Hub
-   - Add project from disk
-   - Select the ISDT-2025 folder
+1. Install Unity `6000.2.2f1`.
+2. Clone the repository and add its root directory through Unity Hub.
+3. Open the scene for the lab you want to run.
+4. For Quest scenes, configure the Meta Platform App ID and enable Developer Mode on the headset.
+5. Switch the target platform to Android before building to Quest.
 
-3. **Configure Meta Quest**
-   - Enable Developer Mode on your Quest device
-   - Connect via USB or wireless ADB
-   - Build and deploy to device
+### Python
 
-4. **Run Python Scripts (for Labs 3-5)**
-   ```bash
-   cd Assets/Labs/Lab\ 3
-   python MediaPipe.py
-   ```
+Create a virtual environment and install only the packages required by the selected lab. Common dependencies include:
 
-## Building for Quest
+```bash
+pip install numpy opencv-python mediapipe pyrealsense2
+```
 
-1. File → Build Settings
-2. Switch platform to Android
-3. Select your Quest device
-4. Build and Run
+Lab 5 may additionally require the API client and graph-visualization packages imported by its script.
 
-## Lab Descriptions
+## Hardware Notes
 
-### Lab 2: Spatial Anchors
-Demonstrates persistent spatial anchors using RealSense depth camera for 3D reconstruction and object placement.
-
-### Lab 3: Body Tracking
-Full-body avatar animation using MediaPipe for skeletal tracking and Meta hand tracking for finger movements.
-
-### Lab 4: Game Design
-Interactive VR game featuring object spawning, physics-based interactions, and score tracking.
-
-### Lab 5: LLM Integration
-AI-powered puzzle solving using computer vision and large language models for scene understanding.
-
-**Note**: Some assets (Avatar samples, large media files) are excluded from the repository. Download separately if needed.
+- A Meta Quest headset is required for device-specific XR features.
+- An Intel RealSense camera is required for the RealSense labs.
+- Some labs require the Unity application and Python client to run at the same time.
+- Device addresses, ports, and API credentials should be configured locally and must not be committed.
